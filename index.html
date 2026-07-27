@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -813,7 +813,7 @@ h1, h2, h3, h4, h5, h6 {
 /* About Section */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 3.5rem;
   align-items: center;
 }
@@ -822,36 +822,190 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.about-image {
+.about-carousel-container {
+  position: relative;
+  width: 100%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+  background: var(--dark-surface);
+}
+
+.about-carousel {
+  position: relative;
   width: 100%;
-  object-fit: cover;
   height: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.about-carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.about-carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.5) 65%, transparent 100%);
+  color: #ffffff;
+  padding: 1.5rem 1.5rem 1.75rem;
+  z-index: 2;
+}
+
+.carousel-caption-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fde68a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.carousel-caption-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.carousel-control-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(6, 78, 59, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: var(--transition-normal);
+  font-size: 1.1rem;
+}
+
+.carousel-control-btn:hover {
+  background: var(--accent-gold);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: var(--shadow-gold);
+}
+
+.carousel-control-btn.prev {
+  left: 14px;
+}
+
+.carousel-control-btn.next {
+  right: 14px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  width: 28px;
+  border-radius: 12px;
+  background: var(--accent-gold);
+}
+
+.about-carousel-thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.carousel-thumb {
+  width: 72px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.carousel-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-thumb:hover {
+  opacity: 0.85;
+}
+
+.carousel-thumb.active {
+  opacity: 1;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
 }
 
 .experience-badge {
   position: absolute;
-  bottom: -20px;
+  bottom: 10px;
   right: -20px;
   background: var(--accent-gold-gradient);
   color: #ffffff;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-gold);
   text-align: center;
   border: 4px solid #ffffff;
+  z-index: 6;
 }
 
 .exp-years {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 800;
   line-height: 1;
 }
 
 .exp-text {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1236,7 +1390,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   TAHFIZ SECTION & GALLERY RESPONSIVE FIX
+   TAHFIZ SECTION RESPONSIVE FIX
    ========================================================================== */
 
 .tahfiz-showcase {
@@ -1689,133 +1843,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* Gallery Section */
-.gallery-filter-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.gallery-filter-btn {
-  padding: 0.7rem 1.4rem;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border: 2px solid var(--border-color);
-  background: #ffffff;
-  color: var(--text-dark);
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.gallery-filter-btn.active, .gallery-filter-btn:hover {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.75rem;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  height: 260px;
-  cursor: pointer;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  background: var(--dark);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.gallery-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(6, 78, 59, 0.9);
-  backdrop-filter: blur(6px);
-  color: #fde68a;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  z-index: 5;
-  border: 1px solid rgba(254, 230, 138, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.gallery-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(6, 78, 59, 0.2) 0%, rgba(6, 78, 59, 0.88) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  opacity: 0;
-  transition: var(--transition-normal);
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.gallery-overlay-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  transform: translateY(15px);
-  transition: transform 0.3s ease;
-}
-
-.gallery-overlay-content i {
-  font-size: 2.2rem;
-  color: #fde68a;
-}
-
-.gallery-overlay-content span {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #ffffff;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.08);
-}
-
-.gallery-item:hover .gallery-overlay {
-  opacity: 1;
-}
-
-.gallery-item:hover .gallery-overlay-content {
-  transform: translateY(0);
-}
 
 /* Testimonials */
 .testimonials-grid {
@@ -2138,6 +2165,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  /* About Carousel Mobile Optimization */
+  .about-carousel {
+    height: 300px !important;
+  }
+  .carousel-control-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.9rem !important;
+  }
+  .carousel-caption {
+    padding: 0.85rem 1rem 1.15rem !important;
+  }
+  .carousel-caption-title {
+    font-size: 0.95rem !important;
+  }
+  .carousel-caption-desc {
+    font-size: 0.78rem !important;
+  }
+  .carousel-thumb {
+    width: 58px !important;
+    height: 42px !important;
+  }
+  .experience-badge {
+    bottom: -15px !important;
+    right: 10px !important;
+    padding: 0.75rem 1rem !important;
+  }
+  .exp-years {
+    font-size: 1.7rem !important;
+  }
+
   /* Navigation Bar Mobile Fix */
   .navbar-content {
     padding: 0.75rem 1rem !important;
@@ -2268,10 +2326,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr !important;
   }
 
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-    gap: 1rem !important;
-  }
 
   /* Inputs & Forms Touch Target */
   input, select, textarea, button {
@@ -2309,9 +2363,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.65rem !important;
   }
 
-  .gallery-grid {
-    grid-template-columns: 1fr !important;
-  }
 }
 
 /* ==========================================================================
@@ -2947,7 +2998,6 @@ h1, h2, h3, h4, h5, h6 {
         <a href="#viescolaire" class="nav-link">Vie Scolaire</a>
         <a href="#regimes" class="nav-link">Internat</a>
         <a href="#admissions" class="nav-link">Admissions</a>
-        <a href="#galerie" class="nav-link">Galerie</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -2973,7 +3023,6 @@ h1, h2, h3, h4, h5, h6 {
       <a href="#viescolaire" class="mobile-nav-link">Vie Scolaire</a>
       <a href="#regimes" class="mobile-nav-link">Internat & Régimes</a>
       <a href="#admissions" class="mobile-nav-link">Admissions</a>
-      <a href="#galerie" class="mobile-nav-link">Galerie photos</a>
       <a href="#contact" class="mobile-nav-link">Contact & Accès</a>
     </div>
     <a href="#inscriptions-form" class="btn btn-gold btn-lg" style="width: 100%;">
@@ -3080,7 +3129,85 @@ h1, h2, h3, h4, h5, h6 {
     <div class="container">
       <div class="about-grid">
         <div class="about-image-wrapper">
-          <img src="assets/images/hero.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';" alt="Bâtiment École Houdallah Dakar Malika" class="about-image">
+          <div class="about-carousel-container" id="aboutCarousel">
+            <div class="about-carousel">
+              <div class="about-carousel-track">
+
+                <!-- Slide 1: Bâtiment Officiel École Houdallah -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/batiment_ecole_houdallah.jpg" alt="Bâtiment Officiel École Privée Franco-Arabe Houdallah Malika" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-building-columns"></i> Bâtiment & Campus Principal</div>
+                    <div class="carousel-caption-desc">Siège officiel de l'École Privée Franco-Arabe HOUD'ALLAH à Malika Cité Sonatel.</div>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Classe Franco-Arabe -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/classe_franco_arabe.jpg" alt="Salle de classe Franco-Arabe" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-chalkboard-user"></i> Cursus Franco-Arabe Officiel</div>
+                    <div class="carousel-caption-desc">Classes modernes associant programme d'État et langue arabe.</div>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Coran et Tahfiz -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/enfants_apprentissage_coran.jpg" alt="Enfants mémorisant le Coran" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=800&auto=format&fit=crop';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-book-quran"></i> Apprentissage du Coran & Tajwid</div>
+                    <div class="carousel-caption-desc">Une éducation spirituelle et morale basée sur des valeurs authentiques.</div>
+                  </div>
+                </div>
+
+                <!-- Slide 4: Section Tahfiz Filles -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/tahfiz_filles_jilbab.jpg" alt="Section Tahfiz Filles" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-star-and-crescent"></i> Section Spéciale Tahfiz (6-12 ans)</div>
+                    <div class="carousel-caption-desc">Programme dédié à la mémorisation du Saint Coran.</div>
+                  </div>
+                </div>
+
+                <!-- Slide 5: Internat & Études du Soir -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/internat_etude_soir.jpg" alt="Internat et études du soir" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-bed"></i> Internat Complet & Études</div>
+                    <div class="carousel-caption-desc">Encadrement continu et soutien scolaire personnalisé.</div>
+                  </div>
+                </div>
+
+                <!-- Slide 6: Épanouissement et Taekwondo -->
+                <div class="about-carousel-slide">
+                  <img src="assets/images/taekwondo_garcons_sport.jpg" alt="Activités sportives Taekwondo" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=800&auto=format&fit=crop';">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-medal"></i> Épanouissement & Sports</div>
+                    <div class="carousel-caption-desc">Activités physiques, arts martiaux (Taekwondo) et sorties.</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Carousel Control Buttons -->
+              <button class="carousel-control-btn prev" aria-label="Image précédente"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="carousel-control-btn next" aria-label="Image suivante"><i class="fa-solid fa-chevron-right"></i></button>
+
+              <!-- Carousel Pagination Dots -->
+              <div class="carousel-dots"></div>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div class="about-carousel-thumbs">
+              <div class="carousel-thumb active" title="Bâtiment Principal"><img src="assets/images/batiment_ecole_houdallah.jpg" alt="Bâtiment Établissement"></div>
+              <div class="carousel-thumb" title="Classes Franco-Arabes"><img src="assets/images/classe_franco_arabe.jpg" alt="Classe"></div>
+              <div class="carousel-thumb" title="Éducation Coranique"><img src="assets/images/enfants_apprentissage_coran.jpg" alt="Coran"></div>
+              <div class="carousel-thumb" title="Section Tahfiz"><img src="assets/images/tahfiz_filles_jilbab.jpg" alt="Tahfiz"></div>
+              <div class="carousel-thumb" title="Internat & Études"><img src="assets/images/internat_etude_soir.jpg" alt="Internat"></div>
+              <div class="carousel-thumb" title="Sports & Taekwondo"><img src="assets/images/taekwondo_garcons_sport.jpg" alt="Sports"></div>
+            </div>
+          </div>
+
           <div class="experience-badge">
             <div class="exp-years">10+</div>
             <div class="exp-text">Ans d'expérience</div>
@@ -4131,99 +4258,7 @@ h1, h2, h3, h4, h5, h6 {
     </div>
   </section>
 
-  <!-- Photo Gallery Section -->
-  <section id="galerie" class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle"><i class="fa-solid fa-images text-gold"></i> Vie de l'Établissement</span>
-        <h2 class="section-title">Galerie Photos</h2>
-      </div>
 
-      <!-- Gallery Grid -->
-
-      <div class="gallery-grid">
-        <!-- Item 1: Filles Jilbab -->
-        <div class="gallery-item" data-category="filles">
-          <img src="assets/images/eleves_filles_jilbab.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';" alt="Élèves Filles Jilbab">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 2: Garçons Qamis -->
-        <div class="gallery-item" data-category="garcons">
-          <img src="assets/images/eleves_garcons_tenue_islam.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';" alt="Élèves Garçons Qamis">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 3: Tahfiz Filles Jilbab -->
-        <div class="gallery-item" data-category="tahfiz filles">
-          <img src="assets/images/tahfiz_filles_jilbab.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop';" alt="Tahfiz Coran Filles">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 4: Tahfiz Garçons Qamis -->
-        <div class="gallery-item" data-category="tahfiz garcons">
-          <img src="assets/images/tahfiz_garcons_qamis.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop';" alt="Tahfiz Coran Garçons">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 5: Cours Franco-Arabe Garçons -->
-        <div class="gallery-item" data-category="garcons">
-          <img src="assets/images/classe_garcons_franco_arabe.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';" alt="Cours Franco-Arabe Garçons">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 6: Taekwondo & Sports Garçons -->
-        <div class="gallery-item" data-category="activites garcons">
-          <img src="assets/images/taekwondo_garcons_sport.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=800&auto=format&fit=crop';" alt="Taekwondo Garçons">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 7: Internat & Étude du soir Garçons -->
-        <div class="gallery-item" data-category="internat garcons">
-          <img src="assets/images/internat_garcons_etude.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800&auto=format&fit=crop';" alt="Internat Garçons">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 8: Façade École -->
-        <div class="gallery-item" data-category="etablissement">
-          <img src="assets/images/hero.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';" alt="Établissement Houdallah">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-content">
-              <i class="fa-solid fa-magnifying-glass-plus"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Contact & Access Section -->
   <section id="contact" class="section">
@@ -4354,14 +4389,7 @@ h1, h2, h3, h4, h5, h6 {
     </div>
   </footer>
 
-  <!-- Lightbox Modal -->
-  <div class="modal" id="imageModal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <img id="modalImg" src="" alt="Vue agrandie" style="width: 100%; height: auto; display: block;">
-      <div id="modalCaption" style="padding: 1rem; text-align: center; font-weight: 600; color: var(--primary);"></div>
-    </div>
-  </div>
+
 
   <!-- JavaScript -->
   <script>
@@ -4571,63 +4599,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gallery Category Filtering Logic
-  const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryFilterItems = document.querySelectorAll('.gallery-item');
 
-  if (galleryFilterBtns.length > 0 && galleryFilterItems.length > 0) {
-    galleryFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
-
-        galleryFilterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        galleryFilterItems.forEach(item => {
-          const category = item.getAttribute('data-category') || '';
-          if (filter === 'all' || category.includes(filter)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-  }
-
-  // Gallery Modal Lightbox
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const imageModal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImg');
-  const modalCaption = document.getElementById('modalCaption');
-  const modalClose = document.getElementById('modalClose');
-
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const caption = item.getAttribute('data-caption') || '';
-      if (imageModal && modalImg) {
-        modalImg.src = img.src;
-        if (modalCaption) {
-          modalCaption.textContent = caption;
-          modalCaption.style.display = caption ? 'block' : 'none';
-        }
-        imageModal.classList.add('active');
-      }
-    });
-  });
-
-  if (modalClose && imageModal) {
-    modalClose.addEventListener('click', () => {
-      imageModal.classList.remove('active');
-    });
-
-    imageModal.addEventListener('click', (e) => {
-      if (e.target === imageModal) {
-        imageModal.classList.remove('active');
-      }
-    });
-  }
 });
 
 // Toast Helper Function
