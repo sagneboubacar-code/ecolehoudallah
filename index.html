@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -1233,6 +1233,73 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-muted);
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   TAHFIZ SECTION & GALLERY RESPONSIVE FIX
+   ========================================================================== */
+
+.tahfiz-showcase {
+  background: linear-gradient(135deg, #043e2f 0%, #064e3b 60%, #086b51 100%) !important;
+  border-radius: var(--radius-lg) !important;
+  color: #ffffff !important;
+  padding: 3rem 2.5rem !important;
+  box-shadow: var(--shadow-lg) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-top: 3rem !important;
+  border: 2px solid var(--accent-gold) !important;
+}
+
+.tahfiz-grid {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  gap: 2.5rem !important;
+  align-items: center !important;
+}
+
+.tahfiz-img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 320px !important;
+  max-height: 480px !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+  border: 3px solid var(--accent-gold) !important;
+}
+
+.tahfiz-step-item {
+  background: #ffffff !important;
+  padding: 1.25rem 1.5rem !important;
+  border-radius: var(--radius-md) !important;
+  border-left: 5px solid var(--accent-gold) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+  color: var(--text-dark) !important;
+}
+
+.tahfiz-step-item strong {
+  color: var(--primary) !important;
+}
+
+@media (max-width: 992px) {
+  .tahfiz-showcase {
+    padding: 2rem 1.25rem !important;
+  }
+
+  .tahfiz-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .tahfiz-title {
+    font-size: 1.8rem !important;
+  }
+
+  .tahfiz-img {
+    height: 280px !important;
+    min-height: auto !important;
+  }
 }
 
 /* Tahfiz Special Section Showcase */
@@ -4623,5 +4690,6 @@ function showRegistrationConfirmationModal(data) {
 </script>
 </body>
 </html>
+
 
 
