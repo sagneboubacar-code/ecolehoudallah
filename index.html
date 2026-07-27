@@ -21,6 +21,7 @@
 
   <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
   <style>
 /* ==========================================================================
    ÉCOLE PRIVÉE FRANCO-ARABE HOUD'ALLAH - DESIGN SYSTEM & STYLESHEET
@@ -621,8 +622,8 @@ h1, h2, h3, h4, h5, h6 {
 .hero {
   position: relative;
   padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(4, 62, 47, 0.88) 100%), 
-              url('assets/images/hero.jpg') center/cover no-repeat, url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.75) 0%, rgba(4, 62, 47, 0.65) 100%), 
+              url('assets/images/hero.jpg') center/cover no-repeat;
   color: #ffffff;
   overflow: hidden;
 }
@@ -858,8 +859,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center center;
   display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.about-carousel-slide img:hover {
+  transform: scale(1.02);
 }
 
 .carousel-caption {
@@ -2915,9 +2922,137 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.3px;
 }
 
+/* Lightbox Photo Viewer Modal */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
+.lightbox-modal.active {
+  display: flex;
+  opacity: 1;
+}
 
+.lightbox-container {
+  max-width: 92vw;
+  max-height: 90vh;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.lightbox-image-wrapper {
+  position: relative;
+  max-width: 100%;
+  max-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-image-wrapper img {
+  max-width: 100%;
+  max-height: 78vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+  border: 3px solid var(--accent-gold);
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  margin-top: 1.25rem;
+  color: #fde68a;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 750px;
+  background: rgba(6, 78, 59, 0.85);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(253, 230, 138, 0.3);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 100000;
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-gold);
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(6, 78, 59, 0.85);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.25s ease;
+  z-index: 100000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-gold);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: var(--shadow-gold);
+}
+
+.lightbox-nav.prev { left: 25px; }
+.lightbox-nav.next { right: 25px; }
+
+@media (max-width: 768px) {
+  .lightbox-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  .lightbox-nav.prev { left: 10px; }
+  .lightbox-nav.next { right: 10px; }
+  .lightbox-close { top: 15px; right: 15px; font-size: 2rem; width: 40px; height: 40px; }
+}
 </style>
 
   <!-- Structured Data JSON-LD (Schema.org) -->
@@ -3152,7 +3287,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 <!-- Slide 2: Classe Franco-Arabe -->
                 <div class="about-carousel-slide">
-                  <img src="assets/images/classe_franco_arabe.jpg" alt="Salle de classe Franco-Arabe" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';">
+                  <img src="assets/images/classe_franco_arabe.jpg" alt="Salle de classe Franco-Arabe" onerror="this.onerror=null;this.src='assets/images/classe_garcons_franco_arabe.jpg';">
                   <div class="carousel-caption">
                     <div class="carousel-caption-title"><i class="fa-solid fa-chalkboard-user"></i> Cursus Franco-Arabe Officiel</div>
                     <div class="carousel-caption-desc">Classes modernes associant programme d'État et langue arabe.</div>
@@ -3161,7 +3296,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 <!-- Slide 3: Coran et Tahfiz -->
                 <div class="about-carousel-slide">
-                  <img src="assets/images/enfants_apprentissage_coran.jpg" alt="Enfants mémorisant le Coran" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=800&auto=format&fit=crop';">
+                  <img src="assets/images/enfants_apprentissage_coran.jpg" alt="Enfants mémorisant le Coran" onerror="this.onerror=null;this.src='assets/images/tahfiz.jpg';">
                   <div class="carousel-caption">
                     <div class="carousel-caption-title"><i class="fa-solid fa-book-quran"></i> Apprentissage du Coran & Tajwid</div>
                     <div class="carousel-caption-desc">Une éducation spirituelle et morale basée sur des valeurs authentiques.</div>
@@ -3170,7 +3305,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 <!-- Slide 4: Section Tahfiz Filles -->
                 <div class="about-carousel-slide">
-                  <img src="assets/images/tahfiz_filles_jilbab.jpg" alt="Section Tahfiz Filles" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';">
+                  <img src="assets/images/tahfiz_filles_jilbab.jpg" alt="Section Tahfiz Filles" onerror="this.onerror=null;this.src='assets/images/tahfiz_garcons_qamis.jpg';">
                   <div class="carousel-caption">
                     <div class="carousel-caption-title"><i class="fa-solid fa-star-and-crescent"></i> Section Spéciale Tahfiz (6-12 ans)</div>
                     <div class="carousel-caption-desc">Programme dédié à la mémorisation du Saint Coran.</div>
@@ -3179,7 +3314,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 <!-- Slide 5: Internat & Études du Soir -->
                 <div class="about-carousel-slide">
-                  <img src="assets/images/internat_etude_soir.jpg" alt="Internat et études du soir" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop';">
+                  <img src="assets/images/internat_etude_soir.jpg" alt="Internat et études du soir" onerror="this.onerror=null;this.src='assets/images/internat_garcons_etude.jpg';">
                   <div class="carousel-caption">
                     <div class="carousel-caption-title"><i class="fa-solid fa-bed"></i> Internat Complet & Études</div>
                     <div class="carousel-caption-desc">Encadrement continu et soutien scolaire personnalisé.</div>
@@ -3188,7 +3323,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 <!-- Slide 6: Épanouissement et Taekwondo -->
                 <div class="about-carousel-slide">
-                  <img src="assets/images/taekwondo_garcons_sport.jpg" alt="Activités sportives Taekwondo" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=800&auto=format&fit=crop';">
+                  <img src="assets/images/taekwondo_garcons_sport.jpg" alt="Activités sportives Taekwondo" onerror="this.onerror=null;this.src='assets/images/activite_taekwondo_sport.jpg';">
                   <div class="carousel-caption">
                     <div class="carousel-caption-title"><i class="fa-solid fa-medal"></i> Épanouissement & Sports</div>
                     <div class="carousel-caption-desc">Activités physiques, arts martiaux (Taekwondo) et sorties.</div>
@@ -3734,6 +3869,11 @@ h1, h2, h3, h4, h5, h6 {
             <a href="#inscriptions-form" class="btn btn-gold btn-lg">
               <i class="fa-solid fa-pen-to-square"></i> Inscrire mon enfant en Tahfiz
             </a>
+          </div>
+
+          <div class="tahfiz-image-container" style="text-align: center;">
+            <img src="assets/images/tahfiz_garcons_qamis.jpg" alt="Section Tahfiz Mémorisation du Saint Coran" class="tahfiz-img" onerror="this.onerror=null;this.src='assets/images/tahfiz.jpg';">
+          </div>
         </div>
       </div>
     </div>
@@ -4662,7 +4802,95 @@ function showRegistrationConfirmationModal(data) {
   modal.classList.add('active');
 }
 
+  // HD Lightbox Modal Logic
+  const lightboxModal = document.getElementById('photoLightboxModal');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentGalleryImages = [];
+  let currentImageIndex = 0;
+
+  function collectPageImages() {
+    const images = document.querySelectorAll('.about-carousel-slide img, .tahfiz-img, .carousel-thumb img');
+    currentGalleryImages = [];
+    const seenSrcs = new Set();
+    
+    images.forEach(img => {
+      if (img.src && !seenSrcs.has(img.src)) {
+        seenSrcs.add(img.src);
+        currentGalleryImages.push({
+          src: img.src,
+          alt: img.alt || 'Photo École Houdallah',
+          caption: img.closest('.about-carousel-slide')?.querySelector('.carousel-caption-title')?.innerText || img.alt || 'École Privée Franco-Arabe HOUD\'ALLAH'
+        });
+      }
+    });
+  }
+
+  function openLightbox(index) {
+    if (currentGalleryImages.length === 0) collectPageImages();
+    if (index < 0) index = currentGalleryImages.length - 1;
+    if (index >= currentGalleryImages.length) index = 0;
+
+    currentImageIndex = index;
+    const item = currentGalleryImages[currentImageIndex];
+    if (item && lightboxImage) {
+      lightboxImage.src = item.src;
+      lightboxCaption.textContent = item.caption;
+      lightboxModal.classList.add('active');
+    }
+  }
+
+  function closeLightbox() {
+    if (lightboxModal) lightboxModal.classList.remove('active');
+  }
+
+  if (lightboxModal) {
+    document.addEventListener('click', (e) => {
+      const targetImg = e.target.closest('.about-carousel-slide img, .tahfiz-img, .carousel-thumb img');
+      if (targetImg) {
+        collectPageImages();
+        const foundIdx = currentGalleryImages.findIndex(item => item.src === targetImg.src);
+        openLightbox(foundIdx >= 0 ? foundIdx : 0);
+      }
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', () => openLightbox(currentImageIndex - 1));
+    if (lightboxNext) lightboxNext.addEventListener('click', () => openLightbox(currentImageIndex + 1));
+
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal || e.target.classList.contains('lightbox-container') || e.target.classList.contains('lightbox-image-wrapper')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxModal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox(currentImageIndex - 1);
+      if (e.key === 'ArrowRight') openLightbox(currentImageIndex + 1);
+    });
+  }
+
 </script>
+
+  <!-- Lightbox Photo Viewer Modal -->
+  <div id="photoLightboxModal" class="lightbox-modal">
+    <div class="lightbox-close" id="lightboxClose">&times;</div>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Photo précédente"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Photo suivante"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-container">
+      <div class="lightbox-image-wrapper">
+        <img id="lightboxImage" src="" alt="Agrandissement HD Photo École Houdallah">
+      </div>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
 </body>
 </html>
 
