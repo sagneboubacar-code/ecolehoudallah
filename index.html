@@ -843,30 +843,57 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-carousel-track {
   display: flex;
+  width: 100%;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .about-carousel-slide {
-  min-width: 100%;
-  height: 100%;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
   position: relative;
   overflow: hidden;
   background: #0d1b16;
 }
 
 .about-carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .about-carousel-slide img:hover {
   transform: scale(1.02);
+}
+
+/* Card & Section Image Headers */
+.card-img-header {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  margin-bottom: 1.25rem;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.program-banner-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  display: block;
 }
 
 .carousel-caption {
@@ -3693,6 +3720,7 @@ h1, h2, h3, h4, h5, h6 {
       <div class="programs-detailed-grid">
         <!-- Préscolaire -->
         <div class="program-detailed-card">
+          <img src="assets/images/eleves_filles_jilbab.jpg" alt="Section Préscolaire HOUD'ALLAH" class="program-banner-img" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
           <div class="program-card-header">
             <div class="program-icon"><i class="fa-solid fa-shapes"></i></div>
             <div>
@@ -3739,6 +3767,7 @@ h1, h2, h3, h4, h5, h6 {
 
         <!-- Élémentaire -->
         <div class="program-detailed-card">
+          <img src="assets/images/classe_franco_arabe.jpg" alt="Section Élémentaire HOUD'ALLAH" class="program-banner-img" onerror="this.onerror=null;this.src='assets/images/classe_garcons_franco_arabe.jpg';">
           <div class="program-card-header">
             <div class="program-icon"><i class="fa-solid fa-book-open-reader"></i></div>
             <div>
@@ -3782,6 +3811,7 @@ h1, h2, h3, h4, h5, h6 {
 
         <!-- Collège -->
         <div class="program-detailed-card">
+          <img src="assets/images/eleves_garcons_tenue_islam.jpg" alt="Section Collège HOUD'ALLAH" class="program-banner-img" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
           <div class="program-card-header">
             <div class="program-icon"><i class="fa-solid fa-school"></i></div>
             <div>
@@ -3893,6 +3923,7 @@ h1, h2, h3, h4, h5, h6 {
       <div class="vie-scolaire-grid">
         <!-- Aire de jeux -->
         <div class="vie-scolaire-card">
+          <img src="assets/images/activities.jpg" alt="Aire de jeux et détente" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
           <div class="vie-scolaire-icon">
             <i class="fa-solid fa-shapes"></i>
           </div>
@@ -3904,6 +3935,7 @@ h1, h2, h3, h4, h5, h6 {
 
         <!-- Sorties pédagogiques -->
         <div class="vie-scolaire-card featured">
+          <img src="assets/images/batiment_ecole_houdallah.jpg" alt="Sorties pédagogiques et culturelles" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
           <div class="vie-scolaire-icon gold">
             <i class="fa-solid fa-bus-simple"></i>
           </div>
@@ -3921,12 +3953,13 @@ h1, h2, h3, h4, h5, h6 {
 
         <!-- Activités et événements scolaires -->
         <div class="vie-scolaire-card">
+          <img src="assets/images/activite_taekwondo_sport.jpg" alt="Activités sportives et Taekwondo" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/taekwondo_garcons_sport.jpg';">
           <div class="vie-scolaire-icon">
             <i class="fa-solid fa-calendar-star"></i>
           </div>
           <h3>Activités et Événements Scolaires</h3>
           <p>
-            Des activités et événements sont organisés tout au long de l'année pour enrichir l'expérience scolaire des élèves.
+            Des activités et événements (Taekwondo, cérémonies, concours Coran) sont organisés tout au long de l'année.
           </p>
         </div>
       </div>
@@ -3996,6 +4029,7 @@ h1, h2, h3, h4, h5, h6 {
       <div class="regimes-grid">
         <!-- Externat -->
         <div class="regime-card">
+          <img src="assets/images/classe_garcons_franco_arabe.jpg" alt="Régime Externat" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/classe_franco_arabe.jpg';">
           <div class="regime-icon"><i class="fa-solid fa-sun"></i></div>
           <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Externat</h3>
           <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
@@ -4009,6 +4043,7 @@ h1, h2, h3, h4, h5, h6 {
 
         <!-- Demi-pension -->
         <div class="regime-card">
+          <img src="assets/images/eleves_filles_jilbab.jpg" alt="Régime Demi-pension" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
           <div class="regime-icon"><i class="fa-solid fa-utensils"></i></div>
           <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Demi-Pension</h3>
           <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
@@ -4023,6 +4058,7 @@ h1, h2, h3, h4, h5, h6 {
         <!-- Internat -->
         <div class="regime-card featured">
           <span class="popular-badge">Très Demandé</span>
+          <img src="assets/images/internat_garcons_etude.jpg" alt="Programme Internat HOUD'ALLAH" class="card-img-header" onerror="this.onerror=null;this.src='assets/images/internat_etude_soir.jpg';">
           <div class="regime-icon"><i class="fa-solid fa-house-user"></i></div>
           <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Internat Complet</h3>
           <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
