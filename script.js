@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentImageIndex = 0;
 
   function collectPageImages() {
-    const selector = '.about-carousel img, .tahfiz-img, .program-banner-img, .card-img-header, .carousel-thumb img';
+    const selector = '.about-carousel img, .tahfiz-img, .program-banner-img, .card-img-header, .carousel-thumb img, .activities-img, .internat-img, .programs-img';
     const images = document.querySelectorAll(selector);
     currentGalleryImages = [];
     const seenSrcs = new Set();
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (lightboxModal) {
     document.addEventListener('click', (e) => {
-      const selector = '.about-carousel-slide img, .tahfiz-img, .program-banner-img, .card-img-header, .carousel-thumb img';
+      const selector = '.about-carousel-slide img, .tahfiz-img, .program-banner-img, .card-img-header, .carousel-thumb img, .activities-img, .internat-img, .programs-img';
       const targetImg = e.target.closest(selector);
       if (targetImg) {
         collectPageImages();
