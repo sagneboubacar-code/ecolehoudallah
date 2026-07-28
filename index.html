@@ -245,11 +245,39 @@
       <div class="about-grid">
         <div class="about-image-wrapper">
           <div class="about-carousel-container">
-            <div class="about-carousel" style="aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden; position: relative;">
-              <img src="./assets/images/hero.jpg" alt="Établissement École Privée Franco-Arabe Houdallah Malika" style="width: 100%; height: 100%; object-fit: cover;">
-              <div class="carousel-caption">
-                <div class="carousel-caption-title"><i class="fa-solid fa-building-columns"></i> Établissement HOUD'ALLAH</div>
-                <div class="carousel-caption-desc">Siège officiel de l'École Privée Franco-Arabe HOUD'ALLAH à Malika Cité Sonatel.</div>
+            <div class="about-carousel" id="aboutCarousel">
+              <div class="about-carousel-track">
+                <div class="about-carousel-slide">
+                  <img src="assets/images/accueil.jpg" alt="Façade Principale - École Privée Franco-Arabe HOUD'ALLAH">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-school"></i> Façade Principale HOUD'ALLAH</div>
+                    <div class="carousel-caption-desc">Entrée officielle de l'École Privée Franco-Arabe HOUD'ALLAH à Malika Cité Sonatel.</div>
+                  </div>
+                </div>
+                <div class="about-carousel-slide">
+                  <img src="assets/images/apropos.jpg" alt="Vue d'ensemble du Bâtiment - École Privée Franco-Arabe HOUD'ALLAH">
+                  <div class="carousel-caption">
+                    <div class="carousel-caption-title"><i class="fa-solid fa-building-columns"></i> Bâtiment & Arcades</div>
+                    <div class="carousel-caption-desc">Vue d'ensemble des locaux spacieux et sécurisés de l'établissement.</div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="carousel-control-btn prev" aria-label="Photo précédente">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="carousel-control-btn next" aria-label="Photo suivante">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+              <div class="carousel-dots"></div>
+            </div>
+
+            <div class="about-carousel-thumbs">
+              <div class="carousel-thumb active">
+                <img src="assets/images/accueil.jpg" alt="Vignette Façade">
+              </div>
+              <div class="carousel-thumb">
+                <img src="assets/images/apropos.jpg" alt="Vignette Bâtiment">
               </div>
             </div>
           </div>
